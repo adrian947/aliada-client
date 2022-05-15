@@ -1,11 +1,5 @@
 import { LOGIN, LOGOUT } from "./types";
 
-// token: localStorage.getItem("token"),
-// auth: null,
-// user: null,
-// type: null,
-// email: null,
-
 export const authReducer = (state, action) => {
   switch (action.type) {
     case LOGIN:

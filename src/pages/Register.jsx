@@ -32,48 +32,50 @@ export const Register = () => {
   };
 
   return (
-    <main className='auth layout'>
-      <div className='auth__formContainer'>
-        {alert.msg && <Alert alert={alert} />}
-        <form className='auth__form' onSubmit={handleSubmit}>
-          <input
-            type='text'
-            placeholder='Nombre'
-            className='auth__input'
-            name='name'
-            onChange={handleInputChange}
-            value={values.name}
-          />
-          <input
-            type='text'
-            placeholder='Email'
-            className='auth__input'
-            name='email'
-            onChange={handleInputChange}
-            value={values.email}
-          />
-          <input
-            type='password'
-            placeholder='Contraseña'
-            className='auth__input'
-            name='password'
-            onChange={handleInputChange}
-            value={values.password}
-          />
-          <input
-            type='Rpassword'
-            placeholder='Repetir Contraseña'
-            className='auth__input'
-            name='rpassword'
-            onChange={handleInputChange}
-            value={values.rpassword}
-          />
-          <input type='submit' value='Registrarse' className='auth__button' />
-        </form>
-        <Link to='/'>
-          <p className='auth__p'>Ya tengo cuenta!</p>
-        </Link>
-      </div>
-    </main>
+    <div className='layout'>
+      <main className='auth'>
+        <div className='auth__formContainer'>
+          {alert.msg && <Alert alert={alert} />}
+          <form className='auth__form' onSubmit={handleSubmit}>
+            <input
+              type='text'
+              placeholder='Nombre'
+              className='auth__input'
+              name='name'
+              onChange={handleInputChange}
+              value={values.name}
+            />
+            <input
+              type='text'
+              placeholder='Email'
+              className='auth__input'
+              name='email'
+              onChange={handleInputChange}
+              value={values.email}
+            />
+            <input
+              type='password'
+              placeholder='Contraseña'
+              className='auth__input'
+              name='password'
+              onChange={handleInputChange}
+              value={values.password}
+            />
+            <input
+              type='Rpassword'
+              placeholder='Repetir Contraseña'
+              className='auth__input'
+              name='rpassword'
+              onChange={handleInputChange}
+              value={values.rpassword}
+            />
+            <input type='submit' value='Registrarse' className='auth__button' />
+          </form>
+          <Link to='/'>
+            <p className='auth__p'>Ya tengo cuenta!</p>
+          </Link>
+        </div>
+      </main>
+    </div>
   );
 };
