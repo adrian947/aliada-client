@@ -1,0 +1,50 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.ticket {
+  &__title {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__info {
+    margin-bottom: 1rem;
+  }
+
+  &__p {
+    margin-bottom: 0.3rem;
+    & span {
+      font-weight: bold;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__select {
+    padding: 0.5rem 0;
+    outline: none;
+  }
+
+  &__textArea {
+    height: 10rem;
+    resize: none;
+    margin: 0.2rem 0;
+    outline: none;
+    padding: 0.2rem;
+  }
+
+  &__button {
+    @include m.button(v.$primary, v.$white);
+    border: none;
+    padding: 0.5rem;
+    margin: 0.2rem 0;
+
+    &--reclamo {
+      @extend .ticket__button;
+      width: 100%;
+    }
+  }
+}

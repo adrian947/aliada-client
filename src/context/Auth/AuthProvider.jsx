@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
 
   const initialState = {
     token: localStorage.getItem("token"),
+    id: null,
     auth: null,
     user: null,
     type: null,
