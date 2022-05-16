@@ -47,8 +47,6 @@ export const TicketProvider = ({ children }) => {
   };
 
   const updateTicket = async (ticket_id, operator_id) => {
-    console.log(" operator_id", operator_id);
-
     try {
       const { data } = await client.put(
         `ticket/${ticket_id}`,
