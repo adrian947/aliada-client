@@ -10,6 +10,7 @@ import {
   Paper,
 } from "@material-ui/core";
 import { ModalTicket } from "../Components/ModalTicket";
+import { format } from './../helpers/formatDate';
 
 const ticketStyle = (ticketStatus) => {
   switch (ticketStatus) {
@@ -42,14 +43,14 @@ export const DashboardTickets = () => {
         <Table sx={{ minWidth: 650 }} aria-label='simple table'>
           <TableHead>
             <TableRow>
-              <TableCell style={{ fontWeight: "bold" }}>ID</TableCell>
-              <TableCell style={{ fontWeight: "bold" }}>Fecha</TableCell>
-              <TableCell style={{ fontWeight: "bold" }}>Nombre</TableCell>
-              <TableCell style={{ fontWeight: "bold" }}>Apellido</TableCell>
-              <TableCell style={{ fontWeight: "bold" }}>Reclamo</TableCell>
-              <TableCell style={{ fontWeight: "bold" }}>Status</TableCell>
-              <TableCell style={{ fontWeight: "bold" }}>Observation</TableCell>
-              <TableCell style={{ fontWeight: "bold" }}>Operador</TableCell>
+              <TableCell>ID</TableCell>
+              <TableCell>Fecha</TableCell>
+              <TableCell>Nombre</TableCell>
+              <TableCell>Apellido</TableCell>
+              <TableCell>Reclamo</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Observation</TableCell>
+              <TableCell>Operador</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -61,7 +62,7 @@ export const DashboardTickets = () => {
                 onClick={() => viewTicket(ticket)}
               >
                 <TableCell>{ticket.id}</TableCell>
-                <TableCell>{ticket.date}</TableCell>
+                <TableCell>{format(ticket.date)}</TableCell>
                 <TableCell>{ticket.name_user}</TableCell>
                 <TableCell>{ticket.surname_user}</TableCell>
                 <TableCell>{ticket.description}</TableCell>
