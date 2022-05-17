@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "./../context/Auth/AuthProvider";
 import { TicketContext } from "../context/Ticket/TicketProvider";
 import Backdrop from "@mui/material/Backdrop";
@@ -20,26 +20,14 @@ const style = {
 };
 
 export const ModalTicket = () => {
-  const { state, ticketModalClose, updateTicket } = useContext(TicketContext);
-  const { state: stateAuth } = useContext(AuthContext);
+  const { state, ticketModalClose } = useContext(TicketContext);  
   const { ticketActive, openModalTicket } = state;
-
-  if (!state.ticketActive) return;
-
-  
- 
 
   const handleClose = () => {
     ticketModalClose();
   };
 
-  const handleTakeClaim = () => {
-    updateTicket(ticketActive.id, { operator_id: stateAuth.id });
-  };
-
- 
-  
-
+  if (!state.ticketActive) return;
   return (
     <div>
       <Modal
@@ -76,13 +64,7 @@ export const ModalTicket = () => {
                     : ticketActive.name}
                 </p>
               </div>
-                    <FormModalTicket ticketActive={ticketActive}/>
-              <button
-                className='ticket__button--reclamo'
-                onClick={handleTakeClaim}
-              >
-                Tomar Reclamo
-              </button>
+              <FormModalTicket ticketActive={ticketActive} />
             </div>
           </Box>
         </Fade>

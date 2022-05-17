@@ -46,17 +46,18 @@ export const TicketProvider = ({ children }) => {
     });
   };
 
-  const updateTicket = async (ticket_id, operator_id) => {
+  const updateTicket = async (ticket_id, ticket) => {
+    
     try {
-      const { data } = await client.put(
+      await client.put(
         `ticket/${ticket_id}`,
-        operator_id,
+        ticket,
         tokenAuth()
       );
-
+        
       dispatch({
         type: TICKET_UPDATE,
-        payload: data.data[0],
+        payload: ticket,
       });
     } catch (error) {
       console.log("error", error);
