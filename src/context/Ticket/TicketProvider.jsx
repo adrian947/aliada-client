@@ -2,6 +2,7 @@ import { createContext, useEffect, useReducer } from "react";
 import { tokenAuth } from "../../service/authTokenHeaders";
 import client from "../../service/clientAxios";
 import { ticketReducer } from "./TicketReducer";
+import { useAlert } from "./../../hooks/useAlert";
 import {
   TICKET_ACTIVE,
   TICKETS,
@@ -12,6 +13,7 @@ import {
 export const TicketContext = createContext();
 
 export const TicketProvider = ({ children }) => {
+  const { alert, showAlert } = useAlert();
   const initialState = {
     tickets: [],
     ticketActive: null,
@@ -47,26 +49,30 @@ export const TicketProvider = ({ children }) => {
   };
 
   const updateTicket = async (ticket_id, ticket) => {
-    
     try {
-      await client.put(
-        `ticket/${ticket_id}`,
-        ticket,
-        tokenAuth()
-      );
-        
+      await client.put(`ticket/${ticket_id}`, ticket, tokenAuth());
+
       dispatch({
         type: TICKET_UPDATE,
         payload: ticket,
       });
     } catch (error) {
-      console.log("error", error);
+      showAlert({
+        msg: error.response.data.msg,
+        error: true,
+      });
     }
   };
 
   return (
     <TicketContext.Provider
-      value={{ ticketActive, state, ticketModalClose, updateTicket }}
+      value={{
+        alert,
+        state,
+        ticketActive,
+        ticketModalClose,
+        updateTicket,
+      }}
     >
       {children}
     </TicketContext.Provider>

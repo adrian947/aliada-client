@@ -4,10 +4,11 @@ import { useForm } from "./../hooks/useForm";
 import { AuthContext } from "./../context/Auth/AuthProvider";
 import client from "../service/clientAxios";
 import { tokenAuth } from "./../service/authTokenHeaders";
+import { Alert } from './Alert';
 
 const FormModalTicket = ({ ticketActive }) => {
   const [operators, setOperators] = useState([]);
-  const { updateTicket } = useContext(TicketContext);
+  const { updateTicket, alert } = useContext(TicketContext);
   const { state: stateAuth } = useContext(AuthContext);
 
   useEffect(() => {
@@ -86,10 +87,10 @@ const FormModalTicket = ({ ticketActive }) => {
           name='status'
           onChange={handleInputChange}
         >
-          <option value='abierto'>Abierto</option>
-          <option value='en progreso'>En progreso</option>
-          <option value='resuelto'>Resuelto</option>
-          <option value='necesita reembolso'>Necesita reembolso</option>
+          <option value='Abierto'>Abierto</option>
+          <option value='En progreso'>En progreso</option>
+          <option value='Resuelto'>Resuelto</option>
+          <option value='Necesita reembolso'>Necesita reembolso</option>
         </select>
 
         <textarea
@@ -101,6 +102,7 @@ const FormModalTicket = ({ ticketActive }) => {
         ></textarea>
         <button className='ticket__button'>Actualizar Reclamo</button>
       </form>
+      {alert.msg && <Alert alert={alert} />}
     </>
   );
 };

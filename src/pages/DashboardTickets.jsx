@@ -11,6 +11,22 @@ import {
 } from "@material-ui/core";
 import { ModalTicket } from "../Components/ModalTicket";
 
+const ticketStyle = (ticketStatus) => {
+  switch (ticketStatus) {
+    case "Abierto":
+      return { backgroundColor: "#519259" };
+    case "En progreso":
+      return { backgroundColor: "#FFD365" };
+    case "Resuelto":
+      return { backgroundColor: "#D9534F" };
+    case "Necesita reembolso":
+      return { backgroundColor: "#19282F", color: "#ffffff" };
+
+    default:
+      break;
+  }
+};
+
 export const DashboardTickets = () => {
   const { state, ticketActive } = useContext(TicketContext);
 
@@ -49,7 +65,9 @@ export const DashboardTickets = () => {
                 <TableCell>{ticket.name_user}</TableCell>
                 <TableCell>{ticket.surname_user}</TableCell>
                 <TableCell>{ticket.description}</TableCell>
-                <TableCell>{ticket.status}</TableCell>
+                <TableCell style={ticketStyle(ticket.status)}>
+                  {ticket.status}
+                </TableCell>
                 <TableCell>{ticket.observation}</TableCell>
                 <TableCell>{ticket.name}</TableCell>
               </TableRow>
