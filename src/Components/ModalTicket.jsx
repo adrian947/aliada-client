@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { AuthContext } from "./../context/Auth/AuthProvider";
 import { TicketContext } from "../context/Ticket/TicketProvider";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";

@@ -4,9 +4,9 @@ import { useForm } from "../hooks/useForm";
 import { AuthContext } from "../context/Auth/AuthProvider";
 import { Alert } from "./../Components/Alert";
 
-export const Register = () => {
-  const navigate = useNavigate();
-  const { alert, registerUser } = useContext(AuthContext);
+export const Register = () => {  
+  const navigate = useNavigate();  
+  const { alert, registerUser, showAlert } = useContext(AuthContext);
 
   const initialForm = {
     name: "adrian",
@@ -19,8 +19,16 @@ export const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    reset();
+    if (values.rpassword !== values.password){
+      return showAlert({
+        msg: 'Hay un error al repetir su contraseña',
+        error: true,
+      });
+    }
+    
     const { rpassword, ...user } = values;
+    
+    reset();
 
     const resp = await registerUser(user);
 
@@ -62,7 +70,7 @@ export const Register = () => {
               value={values.password}
             />
             <input
-              type='Rpassword'
+              type='password'
               placeholder='Repetir Contraseña'
               className='auth__input'
               name='rpassword'

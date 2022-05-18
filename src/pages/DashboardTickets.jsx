@@ -10,7 +10,9 @@ import {
   Paper,
 } from "@material-ui/core";
 import { ModalTicket } from "../Components/ModalTicket";
-import { format } from './../helpers/formatDate';
+import { format } from "./../helpers/formatDate";
+import { PaginationTable } from "../Components/PaginationTable";
+import { FilterSelect } from "../Components/FilterSelect";
 
 const ticketStyle = (ticketStatus) => {
   switch (ticketStatus) {
@@ -39,6 +41,7 @@ export const DashboardTickets = () => {
 
   return (
     <>
+      <FilterSelect />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label='simple table'>
           <TableHead>
@@ -76,6 +79,8 @@ export const DashboardTickets = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <PaginationTable />
+
       <ModalTicket />
     </>
   );

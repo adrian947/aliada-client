@@ -94,6 +94,7 @@ export const AuthProvider = ({ children }) => {
         alert,
         state,
         loading,
+        showAlert,
         registerUser,
         loginUser,
         logOut,

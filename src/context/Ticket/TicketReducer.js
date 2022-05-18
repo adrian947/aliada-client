@@ -10,7 +10,8 @@ export const ticketReducer = (state, action) => {
     case TICKETS:
       return {
         ...state,
-        tickets: action.payload,
+        tickets: action.payload.resp,
+        totalTickets: action.payload.total
       };
     case TICKET_ACTIVE:
       return {

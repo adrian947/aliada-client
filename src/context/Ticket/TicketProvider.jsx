@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import { tokenAuth } from "../../service/authTokenHeaders";
 import client from "../../service/clientAxios";
 import { ticketReducer } from "./TicketReducer";
@@ -13,18 +13,23 @@ import {
 export const TicketContext = createContext();
 
 export const TicketProvider = ({ children }) => {
+  const [page, setPage] = useState(1);
+  const [statusFilter, setStatusFilter] = useState('Todos'); 
+  
+
   const { alert, showAlert } = useAlert();
   const initialState = {
     tickets: [],
     ticketActive: null,
     openModalTicket: false,
+    totalTickets: null,
   };
 
   const [state, dispatch] = useReducer(ticketReducer, initialState);
 
   useEffect(() => {
     const getTickets = async () => {
-      const { data } = await client.get("ticket", tokenAuth());
+      const { data } = await client.get(`ticket/${page - 1}/${statusFilter}`, tokenAuth());
 
       dispatch({
         type: TICKETS,
@@ -32,8 +37,8 @@ export const TicketProvider = ({ children }) => {
       });
     };
 
-    getTickets();
-  }, []);
+    getTickets();    
+  }, [page, statusFilter]);
 
   const ticketActive = (ticket) => {
     dispatch({
@@ -69,9 +74,13 @@ export const TicketProvider = ({ children }) => {
       value={{
         alert,
         state,
+        page, 
+        statusFilter,
         ticketActive,
         ticketModalClose,
         updateTicket,
+        setPage,
+        setStatusFilter,
       }}
     >
       {children}

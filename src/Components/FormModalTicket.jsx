@@ -4,7 +4,7 @@ import { useForm } from "./../hooks/useForm";
 import { AuthContext } from "./../context/Auth/AuthProvider";
 import client from "../service/clientAxios";
 import { tokenAuth } from "./../service/authTokenHeaders";
-import { Alert } from './Alert';
+import { Alert } from "./Alert";
 
 const FormModalTicket = ({ ticketActive }) => {
   const [operators, setOperators] = useState([]);
@@ -22,7 +22,7 @@ const FormModalTicket = ({ ticketActive }) => {
   const initialForm = {
     status: ticketActive.status,
     observation: ticketActive.observation || "",
-    operator: "",
+    operator: ticketActive.operator_id || "",
   };
 
   const [values, handleInputChange, reset] = useForm(initialForm);
@@ -31,16 +31,6 @@ const FormModalTicket = ({ ticketActive }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateTicket(ticketActive.id, {
-      ...ticketActive,
-      operator_id: ticketActive.operator_id,
-      status,
-      observation,
-    });
-    reset();
-  };
-
-  const handleTakeClaim = () => {
     const selectOperator = document.getElementById("operator");
     const OptionOperator =
       selectOperator?.options[selectOperator.selectedIndex].text;
@@ -49,7 +39,10 @@ const FormModalTicket = ({ ticketActive }) => {
       ...ticketActive,
       operator_id: operator ? parseInt(operator) : stateAuth.id,
       name: OptionOperator ? OptionOperator : stateAuth.user,
+      status,
+      observation,
     });
+    reset();
   };
 
   return (
@@ -72,21 +65,15 @@ const FormModalTicket = ({ ticketActive }) => {
           </select>
         )}
 
-        <button
-          className='ticket__button--reclamo'
-          type='button'
-          onClick={handleTakeClaim}
-        >
-          {stateAuth.type === "operator_key"
-            ? "Asignar Reclamo"
-            : "Tomar Reclamo"}
-        </button>
         <select
           className='ticket__select'
-          value={status}
           name='status'
           onChange={handleInputChange}
+          defaultValue={"DEFAULT"}
         >
+          <option value={"DEFAULT"} disabled>
+            Cambiar Status
+          </option>
           <option value='Abierto'>Abierto</option>
           <option value='En progreso'>En progreso</option>
           <option value='Resuelto'>Resuelto</option>
