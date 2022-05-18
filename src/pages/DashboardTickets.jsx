@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { TicketContext } from "../context/Ticket/TicketProvider";
+import { format } from "./../helpers/formatDate";
+import { ModalTicket } from "../Components/ModalTicket";
 import {
   TableContainer,
   Table,
@@ -9,8 +11,6 @@ import {
   TableBody,
   Paper,
 } from "@material-ui/core";
-import { ModalTicket } from "../Components/ModalTicket";
-import { format } from "./../helpers/formatDate";
 import { PaginationTable } from "../Components/PaginationTable";
 import { FilterSelect } from "../Components/FilterSelect";
 
@@ -40,10 +40,10 @@ export const DashboardTickets = () => {
   };
 
   return (
-    <>
+    <div className="table">
       <FilterSelect />
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+        <Table sx={{ minWidth: 650}} aria-label='simple table'>
           <TableHead>
             <TableRow>
               <TableCell>ID</TableCell>
@@ -68,11 +68,11 @@ export const DashboardTickets = () => {
                 <TableCell>{format(ticket.date)}</TableCell>
                 <TableCell>{ticket.name_user}</TableCell>
                 <TableCell>{ticket.surname_user}</TableCell>
-                <TableCell>{ticket.description}</TableCell>
+                <TableCell><blockquote className="ticket-ellipsis">{ticket.description}</blockquote></TableCell>
                 <TableCell style={ticketStyle(ticket.status)}>
                   {ticket.status}
                 </TableCell>
-                <TableCell>{ticket.observation}</TableCell>
+                <TableCell><blockquote className="ticket-ellipsis">{ticket.observation}</blockquote></TableCell>
                 <TableCell>{ticket.name}</TableCell>
               </TableRow>
             ))}
@@ -82,6 +82,6 @@ export const DashboardTickets = () => {
       <PaginationTable />
 
       <ModalTicket />
-    </>
+    </div>
   );
 };

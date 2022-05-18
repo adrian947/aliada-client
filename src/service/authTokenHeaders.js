@@ -1,6 +1,6 @@
 export const tokenAuth = () => {
   const token = localStorage.getItem("token");
-  
+
   if (token) {
     const config = {
       headers: {
@@ -10,5 +10,7 @@ export const tokenAuth = () => {
     };
 
     return config;
+  }else{
+    window.location.href = "/";
   }
 };

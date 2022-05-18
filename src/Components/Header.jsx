@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../context/Auth/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/Auth/AuthProvider";
 import logo from "/assets/logo.png";
 
 export const Header = () => {

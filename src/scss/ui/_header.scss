@@ -4,13 +4,24 @@
 .header {
   padding: 1rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   background-color: v.$white;
-  justify-content: space-between;
+
+  @include m.tablet {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   &__left {
     display: flex;
     align-items: center;
+    margin-top: 1rem;
+    @include m.tablet {
+      margin-top: 0;
+    }
   }
+
   &__p {
     color: v.$primary;
     font-weight: 600;

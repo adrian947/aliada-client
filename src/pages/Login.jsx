@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
-import { Alert } from "../Components/Alert";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/Auth/AuthProvider";
 import { useForm } from "./../hooks/useForm";
+import { Alert } from "../Components/Alert";
 
 export const Login = () => {
   const navigate = useNavigate();
   const { alert, state, loginUser } = useContext(AuthContext);
 
   const initialForm = {
-    email: "a@a.com",
-    password: "123123",
+    email: "",
+    password: "",
   };
 
   const [values, handleInputChange, reset] = useForm(initialForm);
@@ -24,7 +24,7 @@ export const Login = () => {
   };
 
   return (
-    <div className='layout'>
+    <div className='layout-container'>
       <main className='auth'>
         <div className='auth__formContainer'>
           {alert.msg && <Alert alert={alert} />}
@@ -52,7 +52,7 @@ export const Login = () => {
             />
           </form>
           <Link to='/register'>
-            <p className='auth__p'>¿Aun no tienes cuenta?</p>
+            <p className='auth__p'>¿Aún no tienes cuenta?</p>
           </Link>
         </div>
       </main>

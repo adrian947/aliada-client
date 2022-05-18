@@ -1,9 +1,9 @@
 import { createContext, useEffect, useReducer, useState } from "react";
 import client from "../../service/clientAxios";
-import { authReducer } from "./AuthReducer";
-import { useAlert } from "../../hooks/useAlert";
-import { LOGIN, LOGOUT } from "./types";
 import { tokenAuth } from "../../service/authTokenHeaders";
+import { useAlert } from "../../hooks/useAlert";
+import { authReducer } from "./AuthReducer";
+import { LOGIN, LOGOUT } from "./types";
 
 export const AuthContext = createContext();
 

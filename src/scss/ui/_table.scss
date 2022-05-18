@@ -1,0 +1,7 @@
+@use '../base/mixins' as m;
+
+.table {
+  @include m.tablet {
+    padding: 0 1rem;
+  }
+}

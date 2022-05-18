@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
+import client from "../service/clientAxios";
+import { tokenAuth } from "./../service/authTokenHeaders";
+import { AuthContext } from "./../context/Auth/AuthProvider";
 import { useAlert } from "../hooks/useAlert";
 import { useForm } from "../hooks/useForm";
-import client from "../service/clientAxios";
-import { AuthContext } from "./../context/Auth/AuthProvider";
-import { tokenAuth } from "./../service/authTokenHeaders";
 import { Alert } from "./../Components/Alert";
 
 export const RegisterClaim = () => {

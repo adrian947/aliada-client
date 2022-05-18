@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
+import { TicketContext } from "../context/Ticket/TicketProvider";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { TicketContext } from "../context/Ticket/TicketProvider";
 
 export const PaginationTable = () => {
   const { state, page, setPage } = useContext(TicketContext);

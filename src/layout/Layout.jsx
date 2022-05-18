@@ -1,16 +1,17 @@
 import React, { useContext } from "react";
-import { Header } from "../Components/Header";
+import { Navigate } from "react-router-dom";
 import { AuthContext } from "../context/Auth/AuthProvider";
+import { TicketProvider } from "../context/Ticket/TicketProvider";
 import { DashboardTickets } from "../pages/DashboardTickets";
 import { RegisterClaim } from "./../pages/RegisterClaim";
-import { Navigate } from "react-router-dom";
-import { TicketProvider } from "../context/Ticket/TicketProvider";
+import { Header } from "../Components/Header";
 
 export const Layout = () => {
   const { state, loading } = useContext(AuthContext);
 
   if (loading) return null;
   return (
+    <div className="layout-container">
     <div className='layout'>
       {!state.auth && <Navigate to='/' />}
       <Header />
@@ -22,6 +23,7 @@ export const Layout = () => {
       ) : (
         <RegisterClaim />
       )}
+    </div>
     </div>
   );
 };

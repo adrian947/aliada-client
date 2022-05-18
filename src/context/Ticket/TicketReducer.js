@@ -3,6 +3,7 @@ import {
   TICKETS,
   TICKET_DISABLED,
   TICKET_UPDATE,
+  TICKET_DELETE,
 } from "./types";
 
 export const ticketReducer = (state, action) => {
@@ -11,7 +12,7 @@ export const ticketReducer = (state, action) => {
       return {
         ...state,
         tickets: action.payload.resp,
-        totalTickets: action.payload.total
+        totalTickets: action.payload.total,
       };
     case TICKET_ACTIVE:
       return {
@@ -33,6 +34,13 @@ export const ticketReducer = (state, action) => {
         tickets: state.tickets.map((ticket) =>
           ticket.id === action.payload.id ? action.payload : ticket
         ),
+      };
+    case TICKET_DELETE:
+      return {
+        ...state,
+        ticketActive: null,
+        openModalTicket: false,
+        tickets: state.tickets.filter((ticket) => ticket.id !== action.payload),
       };
 
     default:

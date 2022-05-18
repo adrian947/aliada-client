@@ -1,21 +1,21 @@
 import { createContext, useEffect, useReducer, useState } from "react";
-import { tokenAuth } from "../../service/authTokenHeaders";
 import client from "../../service/clientAxios";
-import { ticketReducer } from "./TicketReducer";
+import { tokenAuth } from "../../service/authTokenHeaders";
 import { useAlert } from "./../../hooks/useAlert";
+import { ticketReducer } from "./TicketReducer";
 import {
   TICKET_ACTIVE,
   TICKETS,
   TICKET_DISABLED,
   TICKET_UPDATE,
+  TICKET_DELETE,
 } from "./types";
 
 export const TicketContext = createContext();
 
 export const TicketProvider = ({ children }) => {
   const [page, setPage] = useState(1);
-  const [statusFilter, setStatusFilter] = useState('Todos'); 
-  
+  const [statusFilter, setStatusFilter] = useState("Todos");
 
   const { alert, showAlert } = useAlert();
   const initialState = {
@@ -29,7 +29,10 @@ export const TicketProvider = ({ children }) => {
 
   useEffect(() => {
     const getTickets = async () => {
-      const { data } = await client.get(`ticket/${page - 1}/${statusFilter}`, tokenAuth());
+      const { data } = await client.get(
+        `ticket/${page - 1}/${statusFilter}`,
+        tokenAuth()
+      );
 
       dispatch({
         type: TICKETS,
@@ -37,7 +40,7 @@ export const TicketProvider = ({ children }) => {
       });
     };
 
-    getTickets();    
+    getTickets();
   }, [page, statusFilter]);
 
   const ticketActive = (ticket) => {
@@ -69,18 +72,36 @@ export const TicketProvider = ({ children }) => {
     }
   };
 
+  const deleteTicket = async (ticket_id) => {
+    try {
+      await client.delete(`ticket/${ticket_id}`, tokenAuth());
+
+      dispatch({
+        type: TICKET_DELETE,
+        payload: ticket_id,
+      });
+
+    } catch (error) {
+      showAlert({
+        msg: error.response.data.msg,
+        error: true,
+      });
+    }
+  };
+
   return (
     <TicketContext.Provider
       value={{
         alert,
         state,
-        page, 
+        page,
         statusFilter,
         ticketActive,
         ticketModalClose,
         updateTicket,
         setPage,
         setStatusFilter,
+        deleteTicket,
       }}
     >
       {children}

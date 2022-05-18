@@ -1,0 +1,21 @@
+@use "../base/mixins" as m;
+
+.filterSelect {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  margin: 0.5rem 0;
+
+  &__label {
+    margin-right: 0.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  @include m.tablet {
+    justify-content: flex-end;
+  }
+}
+.ticket__select--filter {
+  margin: 0;
+}

@@ -19,16 +19,13 @@
   }
 }
 
-@mixin grid($col, $space) {
-  display: grid;
-  gap: $space;
-  grid-template-columns: repeat($col, 1fr);
-}
+/* format button */
 @mixin button($bgCol, $col) {
   background-color: $bgCol;
   text-transform: uppercase;
   color: $col;
   transition: all 0.3s linear;
+  
   &:hover {
     background-color: darken($color: $bgCol, $amount: 10);
     cursor: pointer;

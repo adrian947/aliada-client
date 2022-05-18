@@ -1,9 +1,25 @@
-.pagination ul{
-    margin-top: 1rem;   
-    display:  flex ;
-    justify-content: center ;
-    position: absolute;
-    bottom: 5rem;
-    right: 0;
-    left: 0;    
+@use "../base/variables" as v;
+
+.pagination ul {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 10rem;
+  right: 0;
+  left: 0;
+
+  & li button {
+    background-color: v.$primary;
+    color: white;
+    font-weight: bold;
+
+    &:hover{
+        background-color: darken($color: v.$primary, $amount: 20);
+    }
+  }
+}
+
+.Mui-selected {
+  background-color: darken($color: v.$primary, $amount: 20) !important;
 }

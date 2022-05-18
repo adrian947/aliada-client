@@ -1,8 +1,22 @@
-.layout{
-    background-image: url("/assets/aliada.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    min-width: 100vw;
-    // position: absolute;
+.layout-container {
+  background-image: url("/assets/aliada.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  min-width: 100vw;
+  position: relative;
+
+  &::before {
+    content: "";
+    background-color: black;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.2;
+  }
+}
+.layout {
+  position: relative;
 }

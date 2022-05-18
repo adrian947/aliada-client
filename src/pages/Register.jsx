@@ -1,34 +1,32 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "../hooks/useForm";
 import { AuthContext } from "../context/Auth/AuthProvider";
+import { useForm } from "../hooks/useForm";
 import { Alert } from "./../Components/Alert";
 
-export const Register = () => {  
-  const navigate = useNavigate();  
+export const Register = () => {
+  const navigate = useNavigate();
   const { alert, registerUser, showAlert } = useContext(AuthContext);
 
   const initialForm = {
-    name: "adrian",
-    email: "z@z.com",
-    password: "123123",
-    rpassword: "123123",
+    name: "",
+    email: "",
+    password: "",
+    rpassword: "",
   };
 
   const [values, handleInputChange, reset] = useForm(initialForm);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (values.rpassword !== values.password){
+    if (values.rpassword !== values.password) {
       return showAlert({
-        msg: 'Hay un error al repetir su contraseña',
+        msg: "Los campos de contraseña deben coincidir",
         error: true,
       });
     }
-    
+
     const { rpassword, ...user } = values;
-    
-    reset();
 
     const resp = await registerUser(user);
 
@@ -36,11 +34,13 @@ export const Register = () => {
       setTimeout(() => {
         navigate("/");
       }, 2000);
+      reset();
     }
+    
   };
 
   return (
-    <div className='layout'>
+    <div className='layout-container'>
       <main className='auth'>
         <div className='auth__formContainer'>
           {alert.msg && <Alert alert={alert} />}

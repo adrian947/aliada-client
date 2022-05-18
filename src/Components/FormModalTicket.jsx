@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { TicketContext } from "../context/Ticket/TicketProvider";
-import { useForm } from "./../hooks/useForm";
-import { AuthContext } from "./../context/Auth/AuthProvider";
 import client from "../service/clientAxios";
 import { tokenAuth } from "./../service/authTokenHeaders";
+import { AuthContext } from "./../context/Auth/AuthProvider";
+import { TicketContext } from "../context/Ticket/TicketProvider";
+import { useForm } from "./../hooks/useForm";
 import { Alert } from "./Alert";
 
 const FormModalTicket = ({ ticketActive }) => {
   const [operators, setOperators] = useState([]);
-  const { updateTicket, alert } = useContext(TicketContext);
+  const { updateTicket, deleteTicket, alert } = useContext(TicketContext);
   const { state: stateAuth } = useContext(AuthContext);
 
   useEffect(() => {
@@ -43,6 +43,10 @@ const FormModalTicket = ({ ticketActive }) => {
       observation,
     });
     reset();
+  };
+
+  const handleDeleteTicket = () => {
+    deleteTicket(ticketActive.id);
   };
 
   return (
@@ -87,7 +91,18 @@ const FormModalTicket = ({ ticketActive }) => {
           value={observation}
           placeholder='Coloque aquí una observacion'
         ></textarea>
-        <button className='ticket__button'>Actualizar Reclamo</button>
+        <button className='ticket__button' type='submit'>
+          Actualizar Reclamo
+        </button>
+        {stateAuth.type === "operator_key" && (
+          <button
+            className='ticket__button--delete'
+            type='button'
+            onClick={handleDeleteTicket}
+          >
+            Eliminar Reclamo
+          </button>
+        )}
       </form>
       {alert.msg && <Alert alert={alert} />}
     </>
