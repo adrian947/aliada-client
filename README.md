@@ -1,4 +1,5 @@
 # Aliada-Client🧹🧹🧹
+> Aliada Ticket is a challenge created for aliada.mx. **This is a problem that does not exist in aliada.**
 
 ---
 ### My portfolio 
@@ -11,9 +12,6 @@ const aliada = {
   tools:[React, Material-UI, Axios, React-router-dom]
 }
 ```
-> Aliada Ticket is a challenge created for aliada.mx. **This is a problem that does not exist in aliada.**
-
-
 --- 
 ### Getting started
 - npm i
