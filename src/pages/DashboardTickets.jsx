@@ -40,16 +40,17 @@ export const DashboardTickets = () => {
   };
 
   return (
-    <div className="table">
+    <div className='table'>
       <FilterSelect />
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650}} aria-label='simple table'>
+        <Table sx={{ minWidth: 650 }} aria-label='simple table'>
           <TableHead>
             <TableRow>
               <TableCell>ID</TableCell>
               <TableCell>Fecha</TableCell>
               <TableCell>Nombre</TableCell>
               <TableCell>Apellido</TableCell>
+              <TableCell>Email</TableCell>
               <TableCell>Reclamo</TableCell>
               <TableCell>Status</TableCell>
               <TableCell>Observation</TableCell>
@@ -68,11 +69,24 @@ export const DashboardTickets = () => {
                 <TableCell>{format(ticket.date)}</TableCell>
                 <TableCell>{ticket.name_user}</TableCell>
                 <TableCell>{ticket.surname_user}</TableCell>
-                <TableCell><blockquote className="ticket-ellipsis">{ticket.description}</blockquote></TableCell>
+                <TableCell>
+                  <blockquote className='ticket-ellipsis'>
+                    {ticket.email_user}{" "}
+                  </blockquote>
+                </TableCell>
+                <TableCell>
+                  <blockquote className='ticket-ellipsis'>
+                    {ticket.description}
+                  </blockquote>
+                </TableCell>
                 <TableCell style={ticketStyle(ticket.status)}>
                   {ticket.status}
                 </TableCell>
-                <TableCell><blockquote className="ticket-ellipsis">{ticket.observation}</blockquote></TableCell>
+                <TableCell>
+                  <blockquote className='ticket-ellipsis'>
+                    {ticket.observation}
+                  </blockquote>
+                </TableCell>
                 <TableCell>{ticket.name}</TableCell>
               </TableRow>
             ))}
@@ -80,7 +94,6 @@ export const DashboardTickets = () => {
         </Table>
       </TableContainer>
       <PaginationTable />
-
       <ModalTicket />
     </div>
   );

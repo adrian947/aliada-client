@@ -54,6 +54,9 @@ export const ModalTicket = () => {
                   <span>Apellido:</span> {ticketActive.surname_user}
                 </p>
                 <p className='ticket__p'>
+                  <span>Email:</span> {ticketActive.email_user}
+                </p>
+                <p className='ticket__p'>
                   <span>Descripción:</span> {ticketActive.description}
                 </p>
                 <p className='ticket__p'>
