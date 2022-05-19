@@ -11,19 +11,19 @@ export const Layout = () => {
 
   if (loading) return null;
   return (
-    <div className="layout-container">
-    <div className='layout'>
-      {!state.auth && <Navigate to='/' />}
-      <Header />
+    <div className='layout-container'>
+      <div className='layout'>
+        {!state.auth && <Navigate to='/' />}
+        <Header />
 
-      {state.type === "operator_key" || state.type === "operator" ? (
-        <TicketProvider>
-          <DashboardTickets />
-        </TicketProvider>
-      ) : (
-        <RegisterClaim />
-      )}
-    </div>
+        {state.type === "operator_key" || state.type === "operator" ? (
+          <TicketProvider>
+            <DashboardTickets />
+          </TicketProvider>
+        ) : (
+          <RegisterClaim />
+        )}
+      </div>
     </div>
   );
 };

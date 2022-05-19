@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { TicketContext } from "../context/Ticket/TicketProvider";
 import { format } from "./../helpers/formatDate";
+import { ticketStyle } from "./../helpers/ticketStyle";
 import { ModalTicket } from "../Components/ModalTicket";
 import {
   TableContainer,
@@ -13,22 +14,6 @@ import {
 } from "@material-ui/core";
 import { PaginationTable } from "../Components/PaginationTable";
 import { FilterSelect } from "../Components/FilterSelect";
-
-const ticketStyle = (ticketStatus) => {
-  switch (ticketStatus) {
-    case "Abierto":
-      return { backgroundColor: "#519259" };
-    case "En progreso":
-      return { backgroundColor: "#FFD365" };
-    case "Resuelto":
-      return { backgroundColor: "#D9534F" };
-    case "Necesita reembolso":
-      return { backgroundColor: "#19282F", color: "#ffffff" };
-
-    default:
-      break;
-  }
-};
 
 export const DashboardTickets = () => {
   const { state, ticketActive } = useContext(TicketContext);

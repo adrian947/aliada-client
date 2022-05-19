@@ -14,18 +14,21 @@ export const ticketReducer = (state, action) => {
         tickets: action.payload.resp,
         totalTickets: action.payload.total,
       };
+
     case TICKET_ACTIVE:
       return {
         ...state,
         ticketActive: action.payload,
         openModalTicket: true,
       };
+
     case TICKET_DISABLED:
       return {
         ...state,
         ticketActive: null,
         openModalTicket: false,
       };
+
     case TICKET_UPDATE:
       return {
         ...state,
@@ -35,6 +38,7 @@ export const ticketReducer = (state, action) => {
           ticket.id === action.payload.id ? action.payload : ticket
         ),
       };
+      
     case TICKET_DELETE:
       return {
         ...state,

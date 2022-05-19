@@ -30,7 +30,6 @@ export const AuthProvider = ({ children }) => {
 
       try {
         const { data } = await client.get("/operator", tokenAuth());
-
         const dataToken = {
           ...data.operator,
           token,
@@ -40,6 +39,7 @@ export const AuthProvider = ({ children }) => {
           type: LOGIN,
           payload: dataToken,
         });
+
       } catch (error) {
         localStorage.removeItem("token");
       }
@@ -52,10 +52,12 @@ export const AuthProvider = ({ children }) => {
   const registerUser = async (user) => {
     try {
       const { data } = await client.post("operator/register", user);
+
       showAlert({
         msg: data.msg,
         error: false,
       });
+
       return true;
     } catch (error) {
       showAlert({
@@ -69,10 +71,12 @@ export const AuthProvider = ({ children }) => {
     try {
       const { data } = await client.post("operator/login", user);
       localStorage.setItem("token", data.token);
+
       dispatch({
         type: LOGIN,
         payload: data,
       });
+
       return true;
     } catch (error) {
       showAlert({
@@ -83,9 +87,11 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
+
     dispatch({
       type: LOGOUT,
     });
+    
   };
 
   return (

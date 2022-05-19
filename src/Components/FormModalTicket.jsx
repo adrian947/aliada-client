@@ -16,7 +16,7 @@ const FormModalTicket = ({ ticketActive }) => {
       const { data } = await client.get("operator/operators", tokenAuth());
       setOperators(data);
     };
-
+    
     getOperators();
   }, []);
 

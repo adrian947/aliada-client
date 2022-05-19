@@ -36,7 +36,6 @@ export const Register = () => {
       }, 2000);
       reset();
     }
-    
   };
 
   return (

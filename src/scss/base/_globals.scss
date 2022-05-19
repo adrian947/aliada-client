@@ -18,16 +18,6 @@ p {
   color: v.$black;
   margin: 0;
 }
-.container {
-  max-width: 330px;
-  margin: 0 auto;
-  @include m.tablet {
-    max-width: 440px;
-  }
-  @include m.desktop {
-    max-width: 1200px;
-  }
-}
 ul {
   padding: 0;
   list-style: none;

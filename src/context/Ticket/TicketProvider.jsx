@@ -64,6 +64,7 @@ export const TicketProvider = ({ children }) => {
         type: TICKET_UPDATE,
         payload: ticket,
       });
+      
     } catch (error) {
       showAlert({
         msg: error.response.data.msg,

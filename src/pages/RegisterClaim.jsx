@@ -15,17 +15,16 @@ export const RegisterClaim = () => {
     name_user: state.user,
     surname_user: "",
     description: "",
-    email_user: state.email
+    email_user: state.email,
   };
 
   const [values, handleInputChange, reset] = useForm(initialForm);
-
   const { name_user, surname_user, description } = values;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIdTicket("");
-    
+
     if (!name_user || !surname_user || !description) {
       showAlert({
         msg: "Todos los campos deben estar completos",
@@ -38,7 +37,6 @@ export const RegisterClaim = () => {
 
     try {
       const { data } = await client.post("ticket", values, tokenAuth());
-
       setIdTicket(
         `Tu numero de reclamo es #${data.id} pronto tendras una respuesta de nuestros operadores`
       );

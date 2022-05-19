@@ -6,7 +6,7 @@ import { Alert } from "../Components/Alert";
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { alert, state, loginUser } = useContext(AuthContext);
+  const { alert, loginUser } = useContext(AuthContext);
 
   const initialForm = {
     email: "",
